@@ -5,6 +5,7 @@ def home_page(request):
     return render(request,"index.html")
 
 def check_page(request):
+    # initial varriables
     checked =""
     checked2 = ""
     purpose = []
@@ -15,13 +16,14 @@ def check_page(request):
     operation3 = request.POST.get("titlecaps","off")
     operation4 = request.POST.get("titlesmall","off")
     operation5 = request.POST.get("checkbox5","on")
-
+    
+    # check for the options
     if operation0 == "on":
-        purpose.append("remove punctution")
+        purpose.append("remove punctution") # append the purpose list with the string 
         for i in text:
             if i not in '''!()-[]{};:'"\,<>./?@#$%^&*_~''':
                 checked = checked + i
-                text = checked
+                text = checked # store the output to text
 
     if operation == "on":
         purpose.append("capitalize all letter")
@@ -48,7 +50,7 @@ def check_page(request):
         checked = "".join(ec_list)
         text = checked
 
-    
+    # render it
     params = {'annalyzed_text': checked}
     return render(request, 'index.html', params)
 
